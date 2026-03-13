@@ -6,7 +6,7 @@ import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   site: 'https://bensalcie.dev',
-  outDir: 'C:/MAMP/htdocs/portfolio',
+  outDir: 'C:/MAMP/htdocs/host2',
   integrations: [
     react(),
     tailwind(),
