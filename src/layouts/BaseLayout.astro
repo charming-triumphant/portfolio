@@ -1,0 +1,45 @@
+---
+import SEOHead from '@/components/layout/SEOHead.astro';
+import Nav from '@/components/layout/Nav.astro';
+import Footer from '@/components/layout/Footer.astro';
+import '@/styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  type?: 'website' | 'article';
+}
+
+const { title, description, ogImage, type } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <SEOHead title={title} description={description} ogImage={ogImage} type={type} />
+  </head>
+  <body class="bg-background text-text-primary font-body">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-md focus:text-body-small"
+    >
+      Skip to content
+    </a>
+    <Nav />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <script is:inline>
+      console.log(
+        '%c👋 Hey — you found the dev tools. Nice.',
+        'color: #3B82F6; font-size: 14px; font-weight: bold;'
+      );
+      console.log(
+        '%cThis site is built with Astro, React Three Fiber, and Tailwind CSS.\nCurious about the architecture? Read the case study: /case-study/portfolio-site',
+        'color: #A1A1AA; font-size: 12px;'
+      );
+    </script>
+  </body>
+</html>

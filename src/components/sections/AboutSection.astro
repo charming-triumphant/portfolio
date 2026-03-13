@@ -1,0 +1,69 @@
+---
+import { SITE_CONFIG } from '@/config/site';
+---
+
+<section id="about" class="py-space-12 px-6 tablet:px-12 desktop:px-16">
+  <div class="mx-auto max-w-content">
+    <div class="grid grid-cols-1 desktop:grid-cols-5 gap-space-8 items-start">
+      <!-- Text — 60% -->
+      <div class="desktop:col-span-3">
+        <h2 class="text-h1 font-display font-semibold text-text-primary mb-space-6">
+          About me
+        </h2>
+        <div class="space-y-4 text-body text-text-secondary leading-relaxed">
+          <p>
+            I'm Ben — a full-stack developer based in {SITE_CONFIG.location.split(',')[0]}, New Zealand.
+            I'm finishing a {SITE_CONFIG.degree} at the {SITE_CONFIG.university} (graduating {SITE_CONFIG.graduationYear}),
+            and I've been building software professionally alongside uni for the past two years.
+          </p>
+          <p>
+            Right now I'm a {SITE_CONFIG.currentRole}, working with {SITE_CONFIG.stack} daily.
+            I build patient-facing interfaces, internal tooling, and integrations with
+            healthcare systems — the kind of work where reliability matters and the users
+            don't have patience for broken things.
+          </p>
+          <p>
+            The CS + Marketing combination isn't an accident. I think about software the way
+            a product person does: who's using this, what do they actually need, and how do
+            we measure whether it's working? That perspective shapes everything I build —
+            from the architecture decisions to the copy on the button.
+          </p>
+          <p>
+            I'm {SITE_CONFIG.availability.toLowerCase()}. If you've got a project that needs
+            someone who can think about the user and write the code, let's talk.
+          </p>
+        </div>
+      </div>
+
+      <!-- Visual — 40% -->
+      <div class="desktop:col-span-2 flex flex-col gap-4">
+        <div class="bg-surface border border-border rounded-lg p-6">
+          <dl class="space-y-4">
+            <div>
+              <dt class="text-caption text-text-muted uppercase tracking-wider">Location</dt>
+              <dd class="text-body-small text-text-primary mt-1">{SITE_CONFIG.location}</dd>
+            </div>
+            <div>
+              <dt class="text-caption text-text-muted uppercase tracking-wider">Education</dt>
+              <dd class="text-body-small text-text-primary mt-1">
+                {SITE_CONFIG.degree}<br />
+                <span class="text-text-secondary">{SITE_CONFIG.university}, {SITE_CONFIG.graduationYear}</span>
+              </dd>
+            </div>
+            <div>
+              <dt class="text-caption text-text-muted uppercase tracking-wider">Current Role</dt>
+              <dd class="text-body-small text-text-primary mt-1">{SITE_CONFIG.currentRole}</dd>
+            </div>
+            <div>
+              <dt class="text-caption text-text-muted uppercase tracking-wider">Availability</dt>
+              <dd class="text-body-small text-success mt-1 flex items-center gap-2">
+                <span class="inline-block w-2 h-2 rounded-full bg-success" aria-hidden="true"></span>
+                {SITE_CONFIG.availability}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

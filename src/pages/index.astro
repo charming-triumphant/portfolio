@@ -1,0 +1,106 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/sections/Hero.astro';
+import ProofBar from '@/components/sections/ProofBar.astro';
+import CaseStudyCard from '@/components/cards/CaseStudyCard.astro';
+import SkillsSection from '@/components/sections/SkillsSection.astro';
+import AboutSection from '@/components/sections/AboutSection.astro';
+import ContactSection from '@/components/sections/ContactSection.astro';
+import HeroScene from '@/components/three/HeroScene';
+import SectionReveal from '@/components/ui/SectionReveal';
+import { getCollection } from 'astro:content';
+import { SITE_CONFIG } from '@/config/site';
+
+const projects = await getCollection('projects', ({ data }) => !data.draft && data.featured);
+const sortedProjects = projects.sort((a, b) => a.data.order - b.data.order);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: SITE_CONFIG.name,
+  jobTitle: SITE_CONFIG.jobTitle,
+  url: SITE_CONFIG.url,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Tauranga',
+    addressCountry: 'NZ',
+  },
+  sameAs: [
+    'https://github.com/bensalcie',
+    'https://linkedin.com/in/bensalcie',
+  ],
+};
+---
+
+<BaseLayout>
+  <!-- JSON-LD Person Schema -->
+  <Fragment set:html={`<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`} />
+
+  <!-- Hero with R3F island -->
+  <Hero />
+  <div class="absolute inset-0 z-0 pointer-events-none" style="top: 64px; height: calc(100vh - 64px);" aria-hidden="true">
+    <HeroScene client:visible />
+  </div>
+
+  <!-- Proof Bar -->
+  <ProofBar />
+
+  <!-- Case Studies -->
+  <SectionReveal client:visible>
+    <section id="work" class="py-space-12 px-6 tablet:px-12 desktop:px-16">
+      <div class="mx-auto max-w-content">
+        <h2 class="text-h1 font-display font-semibold text-text-primary mb-space-8">
+          Selected work
+        </h2>
+        <div class="grid grid-cols-1 tablet:grid-cols-2 gap-6">
+          {sortedProjects.map((project, index) => (
+            <CaseStudyCard
+              index={index}
+              title={project.data.title}
+              summary={project.data.summary}
+              tags={project.data.tags}
+              slug={project.id.replace(/\.(md|mdx)$/, '')}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  </SectionReveal>
+
+  <!-- Mid-page CTA -->
+  <SectionReveal client:visible>
+    <section class="py-space-8 px-6 tablet:px-12 desktop:px-16">
+      <div class="mx-auto max-w-content flex flex-col tablet:flex-row items-center justify-between gap-6 p-8 bg-surface border border-border rounded-lg">
+        <div>
+          <p class="text-body font-medium text-text-primary">
+            Have a project in mind?
+          </p>
+          <p class="text-body-small text-text-secondary mt-1">
+            I'm available for freelance work and collaborations across New Zealand.
+          </p>
+        </div>
+        <a
+          href="#contact"
+          class="inline-flex items-center justify-center px-6 py-3 bg-accent hover:bg-accent-hover text-white text-body-small font-medium rounded-md transition-colors min-h-[44px] whitespace-nowrap"
+        >
+          Let's talk
+        </a>
+      </div>
+    </section>
+  </SectionReveal>
+
+  <!-- Skills -->
+  <SectionReveal client:visible>
+    <SkillsSection />
+  </SectionReveal>
+
+  <!-- About -->
+  <SectionReveal client:visible>
+    <AboutSection />
+  </SectionReveal>
+
+  <!-- Contact -->
+  <SectionReveal client:visible>
+    <ContactSection />
+  </SectionReveal>
+</BaseLayout>

@@ -1,0 +1,72 @@
+---
+import { SITE_CONFIG } from '@/config/site';
+---
+
+<section id="hero" class="relative min-h-[calc(100vh-4rem)] flex items-center px-6 tablet:px-12 desktop:px-16 overflow-hidden">
+  <!-- CSS gradient placeholder for 3D scene area (prevents CLS) -->
+  <div
+    class="absolute inset-0 z-0"
+    aria-hidden="true"
+  >
+    <div
+      id="hero-bg"
+      class="absolute inset-0 bg-gradient-to-br from-background via-surface to-background"
+    >
+    </div>
+    <div id="hero-scene-container" class="absolute inset-0"></div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="relative z-10 mx-auto max-w-content w-full py-space-16">
+    <div class="max-w-3xl">
+      <h1
+        class="font-display font-semibold text-text-primary"
+        style="font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem); line-height: 1.1; letter-spacing: -0.02em;"
+      >
+        I build fast, considered
+        <br />
+        <span class="text-accent">web experiences.</span>
+      </h1>
+      <p class="mt-6 text-body text-text-secondary max-w-xl">
+        Full-stack developer with a CS + Marketing brain. Currently shipping{' '}
+        {SITE_CONFIG.stack} at a medical practice software company in{' '}
+        {SITE_CONFIG.location.split(',')[0]}.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a
+          href="#work"
+          class="inline-flex items-center justify-center px-6 py-3 bg-accent hover:bg-accent-hover text-white text-body-small font-medium rounded-md transition-colors min-h-[44px]"
+        >
+          See my work
+        </a>
+        <a
+          href="#contact"
+          class="inline-flex items-center justify-center px-6 py-3 border border-accent text-accent hover:bg-accent/10 text-body-small font-medium rounded-md transition-colors min-h-[44px]"
+        >
+          Get in touch
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- WebGL detection + R3F lazy mount -->
+  <script>
+    function supportsWebGL(): boolean {
+      try {
+        const canvas = document.createElement('canvas');
+        return !!(
+          canvas.getContext('webgl2') || canvas.getContext('webgl')
+        );
+      } catch {
+        return false;
+      }
+    }
+
+    if (supportsWebGL()) {
+      const container = document.getElementById('hero-scene-container');
+      if (container) {
+        container.setAttribute('data-webgl', 'true');
+      }
+    }
+  </script>
+</section>

@@ -1,0 +1,24 @@
+---
+const scores = [
+  { label: 'Performance', value: '95+' },
+  { label: 'SEO', value: '100' },
+  { label: 'Accessibility', value: '95+' },
+];
+---
+
+<section class="bg-surface border-y border-border py-4 px-6 tablet:px-12 desktop:px-16">
+  <div class="mx-auto max-w-content flex items-center justify-center gap-8 tablet:gap-16 flex-wrap">
+    <span class="text-caption text-text-muted font-medium uppercase tracking-wider">
+      Lighthouse
+    </span>
+    {scores.map((score) => (
+      <div
+        class="flex items-center gap-2"
+        aria-label={`Lighthouse ${score.label} score: ${score.value} out of 100`}
+      >
+        <span class="text-caption font-mono text-success font-medium">{score.value}</span>
+        <span class="text-caption text-text-muted">{score.label}</span>
+      </div>
+    ))}
+  </div>
+</section>

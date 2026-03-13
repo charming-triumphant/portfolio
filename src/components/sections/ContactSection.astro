@@ -1,0 +1,28 @@
+---
+import ContactForm from '@/components/ui/ContactForm';
+---
+
+<section id="contact" class="py-space-12 px-6 tablet:px-12 desktop:px-16 border-t border-border">
+  <div class="mx-auto max-w-content">
+    <div class="grid grid-cols-1 desktop:grid-cols-2 gap-space-8 items-start">
+      <!-- Copy -->
+      <div>
+        <h2 class="text-h1 font-display font-semibold text-text-primary">
+          Let's build something together
+        </h2>
+        <p class="mt-4 text-body text-text-secondary max-w-md">
+          Whether you've got a project that needs building or you're looking for a developer
+          who thinks about the user as much as the code — I'd like to hear from you.
+        </p>
+        <p class="mt-4 text-body-small text-text-muted">
+          I typically reply within 24 hours.
+        </p>
+      </div>
+
+      <!-- Form -->
+      <div>
+        <ContactForm client:visible />
+      </div>
+    </div>
+  </div>
+</section>

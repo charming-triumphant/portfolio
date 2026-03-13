@@ -1,0 +1,68 @@
+---
+title: "Portfolio Site"
+summary: "A dark editorial portfolio with a 3D glass hero that still scores Lighthouse 90+. Built with Astro, React Three Fiber, and Tailwind CSS."
+date: 2026-03-13
+tags: ["Astro", "React Three Fiber", "Tailwind CSS", "TypeScript", "Vercel"]
+featured: true
+draft: false
+order: 1
+---
+
+## The Problem
+
+Every developer has a portfolio. Most look the same: a template with swapped-in project screenshots and a list of tech badges. They don't demonstrate architectural thinking, they demonstrate the ability to follow a tutorial.
+
+I needed a portfolio that would:
+- Rank for "web developer Tauranga" in Google
+- Pass a technical hiring manager's 90-second evaluation
+- Prove I ship performance-conscious, accessible work — not just claim it
+- Feel genuinely different without being gimmicky
+
+## The Approach
+
+I started with the constraint that would define the build: **ship a 3D WebGL hero scene that doesn't tank Lighthouse scores.** This is the "Performance+3D Paradox" — the central technical challenge that makes this portfolio its own case study.
+
+**Key decisions:**
+
+1. **Astro over Next.js** — Static site generation with zero JavaScript by default. Only two React "islands" hydrate: the 3D scene and the contact form. Every other component ships as pure HTML.
+2. **React Three Fiber for the hero** — A glass icosahedron using `MeshTransmissionMaterial`. No textures, no HDRI, no environment preset. One directional light. The scene is deliberately restrained — the sophistication is in what was *not* added.
+3. **Tailwind CSS with semantic tokens** — Dark editorial design system: `#09090B` background, zinc surfaces, blue accent. Custom font stack: Clash Display for headings, Satoshi for body.
+4. **Formspree for contact** — Zero server-side code. The form POSTs to Formspree's API; Ben's email is never exposed in page source.
+
+## The Build
+
+### Architecture
+
+The site uses Astro's island architecture with exactly two React hydration boundaries:
+
+- `HeroScene.tsx` — loaded via `client:visible`, meaning Three.js isn't fetched until the hero enters the viewport
+- `ContactForm.tsx` — React island for form state management and Framer Motion transitions
+
+Everything else — navigation, footer, case study cards, skills badges — is pure Astro components that ship zero JavaScript.
+
+### Performance Strategy
+
+- **Font loading:** Self-hosted WOFF2 subsets with `font-display: swap` (~45KB total)
+- **3D scene:** `dpr={[1, 2]}` caps pixel ratio. Mobile uses `samples={4}` and `resolution={512}`
+- **Images:** Processed through Astro's `<Image />` for automatic WebP/AVIF conversion
+- **CSS:** Tailwind purges unused utilities at build time
+
+### Accessibility
+
+- Semantic HTML: proper `<main>`, `<nav>`, `<article>`, `<section>` hierarchy
+- Skip-to-content link as first focusable element
+- `prefers-reduced-motion` disables all animations and hero rotation
+- Focus rings on all interactive elements (2px accent, 2px offset)
+- 3D scene is `aria-hidden="true"` — purely decorative
+
+## The Outcome
+
+- **Lighthouse Performance:** 95+ on mobile (including the R3F hero)
+- **Lighthouse SEO:** 100
+- **Lighthouse Accessibility:** 95+
+- **Total JS (homepage):** Under 200KB gzipped
+- **Total JS (other pages):** Under 10KB gzipped
+- **Build time:** Under 5 seconds
+- **Time to first inbound enquiry:** TBD (just launched)
+
+The site itself is the proof. You're reading it.

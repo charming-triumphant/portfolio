@@ -1,0 +1,69 @@
+---
+import SkillBadge from '@/components/ui/SkillBadge.astro';
+
+const tiers = [
+  {
+    name: 'Ship in',
+    description: 'Production-ready. I build and deploy with these daily.',
+    skills: [
+      'PHP',
+      'Laravel',
+      'Vue.js',
+      'JavaScript',
+      'TypeScript',
+      'Tailwind CSS',
+      'MySQL',
+      'Git',
+    ],
+  },
+  {
+    name: 'Build in',
+    description: 'Proficient. I chose these for this site because they were the right tools.',
+    skills: [
+      'React',
+      'Astro',
+      'Three.js / R3F',
+      'Framer Motion',
+      'Vite',
+      'REST APIs',
+    ],
+  },
+  {
+    name: 'Learning',
+    description: 'Actively developing. Currently investing time here.',
+    skills: [
+      'Node.js',
+      'Docker',
+      'PostgreSQL',
+      'Playwright',
+      'AWS',
+    ],
+  },
+];
+---
+
+<section id="skills" class="py-space-12 px-6 tablet:px-12 desktop:px-16">
+  <div class="mx-auto max-w-content">
+    <h2 class="text-h1 font-display font-semibold text-text-primary mb-space-8">
+      Tech stack
+    </h2>
+
+    <div class="grid grid-cols-1 desktop:grid-cols-3 gap-8">
+      {tiers.map((tier) => (
+        <div>
+          <h3 class="text-h3 font-display font-semibold text-accent mb-2">
+            {tier.name}
+          </h3>
+          <p class="text-body-small text-text-muted mb-4">
+            {tier.description}
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {tier.skills.map((skill) => (
+              <SkillBadge label={skill} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
