@@ -8,6 +8,8 @@ test.describe('Homepage', () => {
     await expect(page.getByRole('heading', { name: 'The Craft' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Philosophy' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Connect' })).toBeVisible();
+    await expect(page.locator('header img.salmon-mark')).toBeVisible();
+    await expect(page.locator('footer img.salmon-mark')).toBeVisible();
   });
 
   test('links the contact address to email', async ({ page }) => {

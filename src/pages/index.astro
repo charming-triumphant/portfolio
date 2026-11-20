@@ -51,6 +51,7 @@ const jsonLd = {
   <Fragment set:html={`<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`} />
   <article class="page">
     <header>
+      <img class="salmon-mark" src="/favicon.svg" alt="" aria-hidden="true" />
       <h1>Salmon Software</h1>
     </header>
 
@@ -91,7 +92,10 @@ const jsonLd = {
     </section>
 
     <footer>
-      <span>Build things that last.</span>
+      <span class="footer-message">
+        <img class="salmon-mark" src="/favicon.svg" alt="" aria-hidden="true" />
+        Build things that last.
+      </span>
       <span>2026</span>
     </footer>
   </article>
@@ -117,6 +121,31 @@ const jsonLd = {
     font-size: 15px;
     line-height: 1.55;
     font-weight: 600;
+  }
+
+  header,
+  .footer-message {
+    display: flex;
+    align-items: center;
+  }
+
+  header {
+    gap: 10px;
+  }
+
+  .salmon-mark {
+    width: 24px;
+    height: 16px;
+    flex: none;
+  }
+
+  .footer-message {
+    gap: 8px;
+  }
+
+  footer .salmon-mark {
+    width: 18px;
+    height: 12px;
   }
 
   h2 {
