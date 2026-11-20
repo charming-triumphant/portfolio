@@ -12,12 +12,12 @@ interface Props {
 const {
   title = SITE_CONFIG.title,
   description = SITE_CONFIG.description,
-  ogImage = '/og/default.png',
+  ogImage,
   canonicalUrl = Astro.url.href,
   type = 'website',
 } = Astro.props;
 
-const fullOgImageUrl = new URL(ogImage, SITE_CONFIG.url).href;
+const fullOgImageUrl = ogImage ? new URL(ogImage, SITE_CONFIG.url).href : undefined;
 ---
 
 <!-- Primary Meta -->
@@ -26,6 +26,7 @@ const fullOgImageUrl = new URL(ogImage, SITE_CONFIG.url).href;
 <title>{title}</title>
 <meta name="description" content={description} />
 <meta name="author" content={SITE_CONFIG.author} />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 <link rel="canonical" href={canonicalUrl} />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
@@ -34,12 +35,12 @@ const fullOgImageUrl = new URL(ogImage, SITE_CONFIG.url).href;
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={fullOgImageUrl} />
+{fullOgImageUrl && <meta property="og:image" content={fullOgImageUrl} />}
 <meta property="og:site_name" content={SITE_CONFIG.name} />
 <meta property="og:locale" content="en_NZ" />
 
 <!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content={fullOgImageUrl ? 'summary_large_image' : 'summary'} />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={fullOgImageUrl} />
+{fullOgImageUrl && <meta name="twitter:image" content={fullOgImageUrl} />}

@@ -1,0 +1,25 @@
+# Salmon Software
+
+Based in Tauranga, New Zealand, Salmon Software is a small engineering practice dedicated to slow thought, clean architecture, and deterministic tools that earn their keep in silence.
+
+Software should be quiet. It is built by hands that care about the grain of the wood, even the parts nobody sees. Salmon Software believes technology should not demand attention or trap the people who use it; it should clear the desk, steady the day, and disappear into the background.
+
+## The Craft
+
+### Web Systems
+Fast, honest software that respects the person on the other side of the screen.
+
+### Quiet Automation
+Taking the repetitive weight off human shoulders so teams can return to real work.
+
+### Human Judgment
+Listening closely to how a business breathes before a single line of code is written.
+
+## Philosophy
+
+Behind every messy spreadsheet or sluggish portal is someone losing an hour of their evening to work a machine should have carried. Salmon Software believes technology should leave room for judgment, conversation, and craft. Tools will keep changing. What endures is care, accountability, and knowing what not to build.
+
+## Contact
+- Website: https://salmonsoftware.nz
+- Email: ben@salmonsoftware.nz
+- Location: Tauranga, Bay of Plenty, New Zealand
